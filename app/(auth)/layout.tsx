@@ -16,8 +16,8 @@ const layout = ({ children }: { children: ReactNode }) => {
           <Image
             src="images/site-logo.svg"
             alt="DevOverFlow Logo"
-            width={23}
-            height={23}
+            width={50}
+            height={50}
             className="object-contain"
           />
         </div>
