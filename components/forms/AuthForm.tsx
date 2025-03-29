@@ -56,7 +56,7 @@ const AuthForm = <T extends FieldValues>({
             control={form.control}
             name={field as Path<T>}
             render={({ field }) => (
-              <FormItem className="flex w0full flex-col gap-2.5">
+              <FormItem className="flex w-full flex-col gap-2.5">
                 <FormLabel className="paragraph-medium text-dark400_light700">
                   {field.name === "email"
                     ? "Email Address"

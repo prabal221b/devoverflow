@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Theme from "@/components/navigation/navbar/Theme";
+import MobileNavigation from "./MobileNavigation";
 
 const Navbar = () => {
   return (
@@ -14,13 +15,14 @@ const Navbar = () => {
           alt="DevOverFlow Logo"
         />
 
-        <p className="h2-bold font-space-grotesk text-white text-dark-100 dark:text-light-100 max-sm:hidden">
+        <p className="h2-bold font-space-grotesk text-dark-100 dark:text-light-900 max-sm:hidden">
           Dev<span className="text-primary-500">Overflow</span>
         </p>
       </Link>
       <p>Global Search</p>
       <div className="flex-between gap-5">
-        <Theme />{" "}
+        <Theme />
+        <MobileNavigation />
       </div>
     </nav>
   );
