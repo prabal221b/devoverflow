@@ -5,7 +5,7 @@ export default async function Home() {
   console.log(session);
   return (
     <>
-      <h1 className="h1-bold text-center">Welcome to next</h1>
+      <h1 className="h1-bold">Welcome to next</h1>
     </>
   );
 }
