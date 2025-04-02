@@ -2,7 +2,7 @@ import ROUTES from "constants/route";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import React from "react";
-import { getDeviconClassName } from "../../lib/utils";
+import { getDeviconClassName } from "@/lib/utils";
 import Image from "next/image";
 
 interface Props {

@@ -7,11 +7,11 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/components/ui/sheet";
+} from "@/components/ui/sheet";
 import Image from "next/image";
 import Link from "next/link";
 import ROUTES from "constants/route";
-import { Button } from "@/components/components/ui/button";
+import { Button } from "@/components/ui/button";
 import NavLinks from "./NavLinks";
 
 const MobileNavigation = () => {

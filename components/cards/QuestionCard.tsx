@@ -1,5 +1,5 @@
 import React from "react";
-import { getTimeStamp } from "../../lib/utils";
+import { getTimeStamp } from "@/lib/utils";
 import Link from "next/link";
 import ROUTES from "constants/route";
 import TagCards from "./TagCards";

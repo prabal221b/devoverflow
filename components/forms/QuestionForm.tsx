@@ -12,7 +12,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { AskQuestionSchema } from "../../lib/validations";
+import { AskQuestionSchema } from "@/lib/validations";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { MDXEditorMethods } from "@mdxeditor/editor";

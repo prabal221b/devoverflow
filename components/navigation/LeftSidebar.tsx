@@ -2,7 +2,7 @@ import React from "react";
 import NavLinks from "./navbar/NavLinks";
 import ROUTES from "constants/route";
 import Link from "next/link";
-import { Button } from "@/components/components/ui/button";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 const LeftSidebar = () => {
