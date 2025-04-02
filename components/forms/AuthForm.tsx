@@ -41,6 +41,7 @@ const AuthForm = <T extends FieldValues>({
     defaultValues: defaultValues as DefaultValues<T>,
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSubmit: SubmitHandler<T> = async () => {
     //Add authentication
   };
