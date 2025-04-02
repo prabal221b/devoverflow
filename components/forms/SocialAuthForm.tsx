@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { Button } from "../components/ui/button";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { toast } from "../hooks/use-toast";
+import { toast } from "../../hooks/use-toast";
 import ROUTES from "constants/route";
 import { signIn } from "next-auth/react";
 

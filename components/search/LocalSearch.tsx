@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Input } from "../components/ui/input";
 import Image from "next/image";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { formUrlQuery, removeKeysFromUrlQuery } from "../lib/url";
+import { formUrlQuery, removeKeysFromUrlQuery } from "../../lib/url";
 
 interface Props {
   route: string;

@@ -11,10 +11,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../components/ui/form";
-import { AskQuestionSchema } from "../lib/validations";
-import { Input } from "../components/ui/input";
-import { Button } from "../components/ui/button";
+} from "@/components/ui/form";
+import { AskQuestionSchema } from "../../lib/validations";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { MDXEditorMethods } from "@mdxeditor/editor";
 import dynamic from "next/dynamic";
 import { z } from "zod";

@@ -1,5 +1,5 @@
 import QuestionCard from "@/components/cards/QuestionCard";
-import { Button } from "@/components/components/ui/button";
+import { Button } from "@/components/ui/button";
 import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import ROUTES from "constants/route";

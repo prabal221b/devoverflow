@@ -1,7 +1,7 @@
 "use client";
 
 import { SheetClose } from "@/components/components/ui/sheet";
-import { cn } from "@/components/lib/utils";
+import { cn } from "@/lib/utils";
 import { sidebarLinks } from "constants/index";
 import Image from "next/image";
 import Link from "next/link";
