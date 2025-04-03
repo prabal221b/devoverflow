@@ -1,0 +1,11 @@
+import { model, models, Schema } from "mongoose";
+
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface ITemplate {}
+
+const TemplateSchema = new Schema<ITemplate>({}, { timestamps: true });
+
+const Template =
+  models?.Question || model<ITemplate>("Template", TemplateSchema);
+
+export default Template;
