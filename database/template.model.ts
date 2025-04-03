@@ -6,6 +6,6 @@ export interface ITemplate {}
 const TemplateSchema = new Schema<ITemplate>({}, { timestamps: true });
 
 const Template =
-  models?.Question || model<ITemplate>("Template", TemplateSchema);
+  models?.Template || model<ITemplate>("Template", TemplateSchema);
 
 export default Template;
