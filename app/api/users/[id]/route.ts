@@ -62,11 +62,16 @@ export async function PUT(
       throw new ValidationError(validatedData.error.flatten().fieldErrors);
     }
 
-    const user = User.findByIdAndUpdate(id, validatedData, { new: true });
+    const updatedUser = User.findByIdAndUpdate(id, validatedData, {
+      new: true,
+    });
 
-    if (!user) throw new NotFoundError("User");
+    if (!updatedUser) throw new NotFoundError("User");
 
-    return NextResponse.json({ success: true, data: user }, { status: 200 });
+    return NextResponse.json(
+      { success: true, data: updatedUser },
+      { status: 200 }
+    );
   } catch (error) {
     return handleError(error, "api") as APIErrorResponse;
   }
