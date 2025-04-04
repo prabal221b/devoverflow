@@ -6,6 +6,7 @@ import dbConnect from "@/lib/mongoose";
 import { AccountSchema } from "@/lib/validations";
 import Account from "@/database/account.model";
 
+//GET /api/accounts
 export async function GET() {
   try {
     await dbConnect();
@@ -21,7 +22,8 @@ export async function GET() {
   }
 }
 
-// Create User
+//create account
+//POST /api/accounts
 export async function POST(request: Request) {
   try {
     await dbConnect();

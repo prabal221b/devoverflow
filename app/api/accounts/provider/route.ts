@@ -5,6 +5,7 @@ import dbConnect from "@/lib/mongoose";
 import { AccountSchema } from "@/lib/validations";
 import { NextResponse } from "next/server";
 
+//POST /api/accounts/provider
 export async function POST(request: Request) {
   const { providerAccountId } = await request.json();
 

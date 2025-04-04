@@ -6,6 +6,7 @@ import { NotFoundError, ValidationError } from "@/lib/http-errors";
 import dbConnect from "@/lib/mongoose";
 import { AccountSchema } from "@/lib/validations";
 
+//GET /api/accounts/[id]
 export async function GET(
   _: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -26,6 +27,7 @@ export async function GET(
   }
 }
 
+//DELETE /api/accounts/[id]
 export async function DELETE(
   _: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -45,7 +47,7 @@ export async function DELETE(
     return handleError(error, "api") as APIErrorResponse;
   }
 }
-
+//PUT /api/accounts/[id]
 export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> }

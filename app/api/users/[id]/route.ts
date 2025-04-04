@@ -5,6 +5,7 @@ import dbConnect from "@/lib/mongoose";
 import { UserSchema } from "@/lib/validations";
 import { NextResponse } from "next/server";
 
+//GET /api/users/[id]
 export async function GET(
   _: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -25,6 +26,7 @@ export async function GET(
   }
 }
 
+//DELETE /api/users/[id]
 export async function DELETE(
   _: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -45,6 +47,7 @@ export async function DELETE(
   }
 }
 
+//PUT /api/users/[id]
 export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> }

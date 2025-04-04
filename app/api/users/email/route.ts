@@ -5,6 +5,7 @@ import dbConnect from "@/lib/mongoose";
 import { UserSchema } from "@/lib/validations";
 import { NextResponse } from "next/server";
 
+//POST /api/users/email
 export async function POST(request: Request) {
   const { email } = await request.json();
 
