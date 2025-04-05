@@ -7,12 +7,12 @@ import Image from "next/image";
 
 const LeftSidebar = () => {
   return (
-    <section className="custom-scrollbar backgound-light900_dark200 light-border sticky left-0 top-0 h-screen flex flex-col justify-between overflow-y-auto border-r p-6 pt-28 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[266px]">
+    <section className="custom-scrollbar backgound-light900_dark200 light-border sticky left-0 top-0 h-screen flex flex-col justify-between overflow-y-auto border-r p-6 pt-36 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[266px]">
       <div className="flex flex-col flex-1 gap-6">
         <NavLinks />
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 mt-2">
         <Button
           className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none"
           asChild
