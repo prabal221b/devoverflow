@@ -18,7 +18,6 @@ const UserAvatar = ({ id, name, imageUrl, className = "h-9" }: Props) => {
     .join("")
     .toUpperCase()
     .slice(0, 2);
-  console.log(imageUrl);
   return (
     <Link href={ROUTES.PROFILE(id)}>
       <Avatar className={className}>
