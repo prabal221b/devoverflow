@@ -4,6 +4,7 @@ import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import ROUTES from "constants/route";
 import Link from "next/link";
+import { auth } from "@/auth";
 
 const questions = [
   {
@@ -51,6 +52,9 @@ interface SearchParams {
 }
 
 export default async function Home({ searchParams }: SearchParams) {
+  const session = await auth();
+  console.log("Session ", session);
+
   const { query = "", filter = "" } = await searchParams;
 
   const filteredQuestion = questions.filter((question) => {
