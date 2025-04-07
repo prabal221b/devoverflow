@@ -21,7 +21,7 @@ const EditQuestion = async ({ params }: RouteParams) => {
   if (!session) return redirect("/sign-in");
   return (
     <main>
-      <QuestionForm />
+      <QuestionForm question={question} isEdit />
     </main>
   );
 };

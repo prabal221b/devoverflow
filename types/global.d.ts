@@ -2,6 +2,7 @@ interface Question {
   _id: string;
   title: string;
   tags: Tag[];
+  content: string;
   author: Author;
   createdAt: Date;
   upvotes: number;
