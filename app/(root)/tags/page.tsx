@@ -2,6 +2,7 @@ import React from "react";
 import { getTags } from "@/lib/actions/tag.actions";
 
 const Tags = async () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { success, data, error } = await getTags({
     page: 1,
     pageSize: 10,
