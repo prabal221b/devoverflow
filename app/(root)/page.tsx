@@ -2,7 +2,7 @@ import QuestionCard from "@/components/cards/QuestionCard";
 import { Button } from "@/components/ui/button";
 import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
-import ROUTES from "constants/route";
+import ROUTES from "@/constants/routes";
 import Link from "next/link";
 
 const questions = [

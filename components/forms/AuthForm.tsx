@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import ROUTES from "constants/route";
+import ROUTES from "@/constants/routes";
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 

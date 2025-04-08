@@ -23,7 +23,7 @@ import TagCard from "../cards/TagCards";
 import { createQuestion, editQuestion } from "@/lib/actions/question.actions";
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import ROUTES from "@/constants/route";
+import ROUTES from "@/constants/routes";
 
 const Editor = dynamic(() => import("@/components/editor"), {
   ssr: false,
