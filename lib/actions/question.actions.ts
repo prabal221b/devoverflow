@@ -9,7 +9,7 @@ import {
   GetQuestionSchema,
   PaginatedSearchParamsSchema,
 } from "../validations";
-import Question from "@/database/question.model";
+import Question, { IQuestionDoc } from "@/database/question.model";
 import Tag, { ITagDoc } from "@/database/tag.model";
 import TagQuestion from "@/database/tag-question.model";
 
@@ -82,7 +82,7 @@ export async function createQuestion(
 
 export async function editQuestion(
   params: EditQuestionParams
-): Promise<ActionResponse<Question>> {
+): Promise<ActionResponse<IQuestionDoc>> {
   const validationResult = await action({
     params,
     schema: EditQuestionSchema,
@@ -102,7 +102,9 @@ export async function editQuestion(
   try {
     const question = await Question.findById(questionId).populate("tags");
 
-    if (!question) throw Error("Question not found.");
+    if (!question) {
+      throw new Error("Question not found");
+    }
 
     if (question.author.toString() !== userId) {
       throw new Error("Unauthorized");
@@ -129,7 +131,7 @@ export async function editQuestion(
     const newTagDocuments = [];
 
     if (tagsToAdd.length > 0) {
-      for (const tag of tags) {
+      for (const tag of tagsToAdd) {
         const existingTag = await Tag.findOneAndUpdate(
           { name: { $regex: `^${tag}$`, $options: "i" } },
           { $setOnInsert: { name: tag }, $inc: { questions: 1 } },
@@ -147,7 +149,7 @@ export async function editQuestion(
       }
     }
 
-    if (tagsToRemove > 0) {
+    if (tagsToRemove.length > 0) {
       const tagIdsToRemove = tagsToRemove.map((tag: ITagDoc) => tag._id);
 
       await Tag.updateMany(
@@ -181,13 +183,13 @@ export async function editQuestion(
     await session.abortTransaction();
     return handleError(error) as ErrorResponse;
   } finally {
-    session.endSession();
+    await session.endSession();
   }
 }
 
 export async function getQuestion(
   params: GetQuestionParams
-): Promise<ActionResponse<Question>> {
+): Promise<ActionResponse<IQuestionDoc>> {
   const validationResult = await action({
     params,
     schema: GetQuestionSchema,
