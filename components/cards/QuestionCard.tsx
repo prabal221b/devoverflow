@@ -46,7 +46,7 @@ const QuestionCard = ({
 
         <div className="flex items-center gap-3 max-sm:flex-wrap max-sm:justify-start">
           <Metric
-            imgUrl="icons/like.svg"
+            imgUrl="/icons/like.svg"
             alt="like"
             value={upvotes}
             title="Votes"
@@ -54,7 +54,7 @@ const QuestionCard = ({
           />
 
           <Metric
-            imgUrl="icons/message.svg"
+            imgUrl="/icons/message.svg"
             alt="answers"
             value={answers}
             title="Answers"
@@ -62,7 +62,7 @@ const QuestionCard = ({
           />
 
           <Metric
-            imgUrl="icons/eye.svg"
+            imgUrl="/icons/eye.svg"
             alt="views"
             value={views}
             title="Views"
