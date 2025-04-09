@@ -14,7 +14,7 @@ interface Props {
 }
 
 const Metric = ({
-  imgUrl,
+  imgUrl = "/images/user-default.png",
   alt,
   value,
   title,
@@ -30,7 +30,7 @@ const Metric = ({
         alt={alt}
         width={16}
         height={16}
-        className={`rounded-full object-contain ${imgStyles}`}
+        className={`rounded-full object-contain ${imgStyles} `}
       />
 
       <p className={`${textStyles} flex items-center gap-1`}>{value}</p>
