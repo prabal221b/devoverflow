@@ -1,4 +1,5 @@
 import TagCard from "@/components/cards/TagCards";
+import Preview from "@/components/editor/Preview";
 import Metric from "@/components/Metric";
 import UserAvatar from "@/components/UserAvatar";
 import ROUTES from "@/constants/routes";
@@ -91,7 +92,7 @@ const QuestionDetails = async ({ params }: RouteParams) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { id } = await params;
 
-  const { author, createdAt, answers, views, tags } = sampleQuestion;
+  const { author, createdAt, answers, views, tags, content } = sampleQuestion;
 
   return (
     <>
@@ -145,7 +146,7 @@ const QuestionDetails = async ({ params }: RouteParams) => {
         />
       </div>
 
-      <>Preview Content</>
+      <Preview content={content} />
 
       <div className="mt-8 flex flex-wrap gap-2">
         {tags.map((tag: Tag) => (
