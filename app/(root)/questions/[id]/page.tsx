@@ -25,6 +25,7 @@ const QuestionDetails = async ({ params }: RouteParams) => {
           <div className="flex items-center justify-start gap-1">
             <UserAvatar
               id={author._id}
+              imageUrl={author.image}
               name={author.name}
               className="size-[22px]"
               fallbackClassName="text-[10px]"
