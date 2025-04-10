@@ -1,9 +1,11 @@
+import AllAnswers from "@/components/answers/AllAnswers";
 import TagCard from "@/components/cards/TagCards";
 import Preview from "@/components/editor/Preview";
 import AnswerForm from "@/components/forms/AnswerForm";
 import Metric from "@/components/Metric";
 import UserAvatar from "@/components/UserAvatar";
 import ROUTES from "@/constants/routes";
+import { getAnswers } from "@/lib/actions/answer.actions";
 import { getQuestion, incrementViews } from "@/lib/actions/question.actions";
 import { formatNumber, getTimeStamp } from "@/lib/utils";
 import Link from "next/link";
@@ -20,6 +22,17 @@ const QuestionDetails = async ({ params }: RouteParams) => {
   });
 
   if (!success && !question) return redirect("/404");
+
+  const {
+    success: areAnswersLoaded,
+    data: answersResults,
+    error: answersError,
+  } = await getAnswers({
+    questionId: id,
+    page: 1,
+    pageSize: 10,
+    filter: "latest",
+  });
 
   const { _id, author, createdAt, answers, views, tags, content, title } =
     question!;
@@ -92,6 +105,15 @@ const QuestionDetails = async ({ params }: RouteParams) => {
           />
         ))}
       </div>
+
+      <section className="my-5">
+        <AllAnswers
+          data={answersResults?.answers}
+          success={areAnswersLoaded}
+          error={answersError}
+          totalAnswers={answersResults?.totalAnswers || 0}
+        />
+      </section>
 
       <section className="my-5">
         <AnswerForm questionId={_id} />
