@@ -1,6 +1,5 @@
 import { Code } from "bright";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { serialize } from "v8";
 
 Code.theme = {
   light: "github-light",
