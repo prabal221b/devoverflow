@@ -1,5 +1,6 @@
 import TagCard from "@/components/cards/TagCards";
 import Preview from "@/components/editor/Preview";
+import AnswerForm from "@/components/forms/AnswerForm";
 import Metric from "@/components/Metric";
 import UserAvatar from "@/components/UserAvatar";
 import ROUTES from "@/constants/routes";
@@ -34,16 +35,19 @@ const QuestionDetails = async ({ params }: RouteParams) => {
               className="size-[22px]"
               fallbackClassName="text-[10px]"
             />
+
             <Link href={ROUTES.PROFILE(author._id)}>
               <p className="pragraph-semibold text-dark300_light700">
                 {author.name}
               </p>
             </Link>
           </div>
+
           <div className="flex justify-end">
             <p>Votes</p>
           </div>
         </div>
+
         <h2 className="h2-semibold text-dark200_light900 mt-3.5 w-full">
           {title}
         </h2>
@@ -87,6 +91,10 @@ const QuestionDetails = async ({ params }: RouteParams) => {
           />
         ))}
       </div>
+
+      <section className="my-5">
+        <AnswerForm />
+      </section>
     </>
   );
 };
