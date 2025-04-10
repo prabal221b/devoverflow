@@ -98,7 +98,6 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
           ...data,
         });
         if (result.success) {
-          console.log("success");
           toast({
             title: "Success",
             description: "Question has been posted successfully.",
@@ -119,7 +118,6 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
       const result = await createQuestion(data);
 
       if (result.success) {
-        console.log("success");
         toast({
           title: "Success",
           description: "Question updated successfully.",
