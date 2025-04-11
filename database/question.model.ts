@@ -20,8 +20,8 @@ const QuestionSchema = new Schema<IQuestion>(
     author: { type: Schema.Types.ObjectId, ref: "User", required: true },
     views: { type: Number, default: 0 },
     answers: { type: Number, default: 0 },
-    upvotes: { type: Number, Default: 0 },
-    downvotes: { type: Number, Default: 0 },
+    upvotes: { type: Number, default: 0 },
+    downvotes: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
