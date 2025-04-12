@@ -17,7 +17,8 @@ interface Props {
 const Votes = ({ upvotes, downvotes, hasUpVoted, hasDownVoted }: Props) => {
   const session = useSession();
   const userId = session?.data?.user?.id;
-  const [isLoading, setisLoading] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleVote = async (voteType: "upvote" | "downvote") => {
     if (!userId)
@@ -26,7 +27,7 @@ const Votes = ({ upvotes, downvotes, hasUpVoted, hasDownVoted }: Props) => {
         description: "Only logged in users can vote",
       });
 
-    setisLoading(true);
+    setIsLoading(true);
 
     try {
       const successMessage =
@@ -38,13 +39,14 @@ const Votes = ({ upvotes, downvotes, hasUpVoted, hasDownVoted }: Props) => {
         title: successMessage,
         description: "Your vote has been recorded",
       });
+    } catch {
       toast({
-        title: "Error",
+        title: "Failed to Vote",
         description: "An error occurred while processing your vote",
         variant: "destructive",
       });
     } finally {
-      setisLoading(false);
+      setIsLoading(false);
     }
   };
   return (
