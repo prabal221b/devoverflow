@@ -9,6 +9,8 @@ import {
 import action from "../handlers/action";
 import handleError from "../handlers/error";
 import { Answer, Question, Vote } from "@/database";
+import { revalidatePath } from "next/cache";
+import ROUTES from "@/constants/routes";
 
 export async function updateVoteCount(
   params: UpdateVoteCountParams,
@@ -62,7 +64,7 @@ export async function createVote(
   const { targetId, targetType, voteType } = validatedResult.params!;
   const userId = validatedResult.session?.user?.id;
 
-  if (!userId) handleError(new Error("Unauthorized")) as ErrorResponse;
+  if (!userId) return handleError(new Error("Unauthorized")) as ErrorResponse;
 
   const session = await mongoose.startSession();
   session.startTransaction();
@@ -76,7 +78,7 @@ export async function createVote(
 
     if (existingVote) {
       if (existingVote.voteType === voteType) {
-        Vote.deleteOne({ _id: existingVote._id }).session(session);
+        await Vote.deleteOne({ _id: existingVote._id }).session(session);
         await updateVoteCount(
           { targetId, targetType, voteType, change: -1 },
           session
@@ -88,14 +90,28 @@ export async function createVote(
           { new: true, session }
         );
         await updateVoteCount(
+          { targetId, targetType, voteType: existingVote.voteType, change: -1 },
+          session
+        );
+        await updateVoteCount(
           { targetId, targetType, voteType, change: 1 },
           session
         );
       }
     } else {
-      await Vote.create([{ targetId, targetType, voteType, change: 1 }], {
-        session,
-      });
+      await Vote.create(
+        [
+          {
+            author: userId,
+            actionId: targetId,
+            actionType: targetType,
+            voteType,
+          },
+        ],
+        {
+          session,
+        }
+      );
       await updateVoteCount(
         { targetId, targetType, voteType, change: 1 },
         session
@@ -103,13 +119,14 @@ export async function createVote(
     }
 
     await session.commitTransaction();
+    session.endSession();
+    revalidatePath(ROUTES.QUESTION(targetId));
 
     return { success: true };
   } catch (error) {
     await session.abortTransaction();
-    return handleError(error) as ErrorResponse;
-  } finally {
     session.endSession();
+    return handleError(error) as ErrorResponse;
   }
 }
 

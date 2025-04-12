@@ -1,24 +1,36 @@
 "use client";
 
 import { toast } from "@/hooks/use-toast";
+import { createVote } from "@/lib/actions/vote.actions";
 import { formatNumber } from "@/lib/utils";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
-import { useState } from "react";
+import { use, useState } from "react";
 
 interface Props {
   upvotes: number;
   downvotes: number;
-  hasUpVoted: boolean;
-  hasDownVoted: boolean;
+  targetType: "question" | "answer";
+  targetId: string;
+  hasVotedPromise: Promise<ActionResponse<HasVotedResponse>>;
 }
 
-const Votes = ({ upvotes, downvotes, hasUpVoted, hasDownVoted }: Props) => {
+const Votes = ({
+  upvotes,
+  downvotes,
+  targetType,
+  targetId,
+  hasVotedPromise,
+}: Props) => {
   const session = useSession();
-  const userId = session?.data?.user?.id;
+  const userId = session.data?.user?.id;
+
+  const { success, data } = use(hasVotedPromise);
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const { hasUpVoted, hasDownVoted } = data || {};
 
   const handleVote = async (voteType: "upvote" | "downvote") => {
     if (!userId)
@@ -30,6 +42,20 @@ const Votes = ({ upvotes, downvotes, hasUpVoted, hasDownVoted }: Props) => {
     setIsLoading(true);
 
     try {
+      const result = await createVote({
+        targetId,
+        targetType,
+        voteType,
+      });
+
+      if (!result.success) {
+        return toast({
+          title: "Failed to Vote",
+          description: result.error?.message,
+          variant: "destructive",
+        });
+      }
+
       const successMessage =
         voteType === "upvote"
           ? `Upvote ${!hasUpVoted ? "added" : "removed"} successfully`
@@ -53,7 +79,9 @@ const Votes = ({ upvotes, downvotes, hasUpVoted, hasDownVoted }: Props) => {
     <div className="flex-center gap-2.5">
       <div className="flex-center gap-1.5">
         <Image
-          src={hasUpVoted ? "/icons/upvoted.svg" : "/icons/upvote.svg"}
+          src={
+            success && hasUpVoted ? "/icons/upvoted.svg" : "/icons/upvote.svg"
+          }
           alt="upvote"
           width={18}
           height={18}
@@ -71,13 +99,17 @@ const Votes = ({ upvotes, downvotes, hasUpVoted, hasDownVoted }: Props) => {
 
       <div className="flex-center gap-1.5">
         <Image
-          src={hasDownVoted ? "/icons/downvoted.svg" : "/icons/downvote.svg"}
-          alt="upvote"
+          src={
+            success && hasDownVoted
+              ? "/icons/downvoted.svg"
+              : "/icons/downvote.svg"
+          }
+          alt="downvote"
           width={18}
           height={18}
           className={`cursor-pointer ${isLoading && "opacity-50"}`}
           aria-label="Downvote"
-          onClick={() => !isLoading && handleVote("upvote")}
+          onClick={() => !isLoading && handleVote("downvote")}
         />
 
         <div className="flex-center background-light700_dark400 min-w-5 rounded-sm p-1">

@@ -8,11 +8,12 @@ import Votes from "@/components/votes/Votes";
 import ROUTES from "@/constants/routes";
 import { getAnswers } from "@/lib/actions/answer.actions";
 import { getQuestion, incrementViews } from "@/lib/actions/question.actions";
+import { hasVoted } from "@/lib/actions/vote.actions";
 import { formatNumber, getTimeStamp } from "@/lib/utils";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { after } from "next/server";
-import React from "react";
+import React, { Suspense } from "react";
 
 const QuestionDetails = async ({ params }: RouteParams) => {
   const { id } = await params;
@@ -22,7 +23,7 @@ const QuestionDetails = async ({ params }: RouteParams) => {
     await incrementViews({ questionId: id });
   });
 
-  if (!success && !question) return redirect("/404");
+  if (!success || !question) return redirect("/404");
 
   const {
     success: areAnswersLoaded,
@@ -35,18 +36,12 @@ const QuestionDetails = async ({ params }: RouteParams) => {
     filter: "latest",
   });
 
-  const {
-    _id,
-    author,
-    createdAt,
-    answers,
-    views,
-    tags,
-    title,
-    content,
-    upvotes,
-    downvotes,
-  } = question!;
+  const hasVotedPromise = hasVoted({
+    targetId: question._id,
+    targetType: "question",
+  });
+
+  const { author, createdAt, answers, views, tags, title, content } = question;
 
   return (
     <>
@@ -69,12 +64,15 @@ const QuestionDetails = async ({ params }: RouteParams) => {
           </div>
 
           <div className="flex justify-end">
-            <Votes
-              upvotes={upvotes}
-              hasUpVoted={true}
-              downvotes={downvotes}
-              hasDownVoted={true}
-            />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Votes
+                upvotes={question.upvotes}
+                downvotes={question.downvotes}
+                targetType="question"
+                targetId={question._id}
+                hasVotedPromise={hasVotedPromise}
+              />
+            </Suspense>
           </div>
         </div>
 
@@ -133,7 +131,7 @@ const QuestionDetails = async ({ params }: RouteParams) => {
 
       <section className="my-5">
         <AnswerForm
-          questionId={_id}
+          questionId={question._id}
           questionTitle={title}
           questionContent={content}
         />
