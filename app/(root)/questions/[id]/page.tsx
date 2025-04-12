@@ -71,6 +71,7 @@ const QuestionDetails = async ({ params }: RouteParams) => {
                 targetType="question"
                 targetId={question._id}
                 hasVotedPromise={hasVotedPromise}
+                currUserId={author._id}
               />
             </Suspense>
           </div>

@@ -14,6 +14,7 @@ interface Props {
   targetType: "question" | "answer";
   targetId: string;
   hasVotedPromise: Promise<ActionResponse<HasVotedResponse>>;
+  currUserId: string;
 }
 
 const Votes = ({
@@ -22,6 +23,7 @@ const Votes = ({
   targetType,
   targetId,
   hasVotedPromise,
+  currUserId,
 }: Props) => {
   const session = useSession();
   const userId = session.data?.user?.id;
@@ -31,6 +33,8 @@ const Votes = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const { hasUpVoted, hasDownVoted } = data || {};
+
+  const isCurrentUser = userId === currUserId;
 
   const handleVote = async (voteType: "upvote" | "downvote") => {
     if (!userId)
@@ -87,7 +91,7 @@ const Votes = ({
           height={18}
           className={`cursor-pointer ${isLoading && "opacity-50"}`}
           aria-label="Upvote"
-          onClick={() => !isLoading && handleVote("upvote")}
+          onClick={() => !isLoading && !isCurrentUser && handleVote("upvote")}
         />
 
         <div className="flex-center background-light700_dark400 min-w-5 rounded-sm p-1">
@@ -109,7 +113,7 @@ const Votes = ({
           height={18}
           className={`cursor-pointer ${isLoading && "opacity-50"}`}
           aria-label="Downvote"
-          onClick={() => !isLoading && handleVote("downvote")}
+          onClick={() => !isLoading && !isCurrentUser && handleVote("downvote")}
         />
 
         <div className="flex-center background-light700_dark400 min-w-5 rounded-sm p-1">
