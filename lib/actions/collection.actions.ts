@@ -145,7 +145,7 @@ export async function getSavedQuestion(
           as: "question",
         },
       },
-      { $unwind: "question" },
+      { $unwind: "$question" },
       {
         $lookup: {
           from: "users",
@@ -154,7 +154,7 @@ export async function getSavedQuestion(
           as: "question.author",
         },
       },
-      { $unwind: "question.author" },
+      { $unwind: "$question.author" },
       {
         $lookup: {
           from: "tags",
