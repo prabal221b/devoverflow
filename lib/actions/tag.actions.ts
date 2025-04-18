@@ -82,7 +82,7 @@ export const getTagQuestions = async (
   if (validationResult instanceof Error)
     return handleError(validationResult) as ErrorResponse;
 
-  const { tagId, page = 1, pageSize = 10, query } = params;
+  const { tagId, page = 1, pageSize = 10, query, filter } = params;
 
   const skip = (Number(page) - 1) * pageSize;
   const limit = Number(pageSize);
@@ -100,6 +100,24 @@ export const getTagQuestions = async (
       filterQuery.title = { $regex: query, $options: "i" };
     }
 
+    let sortCriteria = {};
+
+    switch (filter) {
+      case "newest":
+        sortCriteria = { createdAt: -1 };
+        break;
+      case "unanswered":
+        filterQuery.answers = 0;
+        sortCriteria = { createdAt: -1 };
+        break;
+      case "popular":
+        sortCriteria = { upvotes: -1 };
+        break;
+      default:
+        sortCriteria = { createdAt: -1 };
+        break;
+    }
+
     const totalQuestions = await Question.countDocuments(filterQuery);
 
     const questions = await Question.find(filterQuery)
@@ -108,6 +126,7 @@ export const getTagQuestions = async (
         { path: "author", select: "name image" },
         { path: "tags", select: "name" },
       ])
+      .sort(sortCriteria)
       .skip(skip)
       .limit(limit);
 

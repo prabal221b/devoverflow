@@ -39,7 +39,6 @@ export async function getUsers(
       sortCriteria = { createdAt: -1 };
       break;
     case "oldest":
-      filterQuery.answers = 0;
       sortCriteria = { createdAt: 1 };
       break;
     case "popular":

@@ -49,7 +49,7 @@ export default async function Home({ searchParams }: SearchParams) {
         <CommonFilter
           filters={HomePageFilters}
           otherClasses="min-h-[56px] sm:min-w-[170px]"
-          containerClasses="hidden max-md:flex"
+          containerClasses="hidden max-sm:flex"
         />
       </section>
       <HomeFilter />
