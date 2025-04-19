@@ -43,7 +43,7 @@ const Stats = ({ totalAnswers, totalQuestions, badges }: Props) => {
               {formatNumber(totalAnswers)}
             </p>
 
-            <p className="body-medium text-dark400_light700">Questions</p>
+            <p className="body-medium text-dark400_light700">Answers</p>
           </div>
         </div>
 
