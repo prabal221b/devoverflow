@@ -30,6 +30,9 @@ module.exports = {
           850: "#FDFDFD",
           900: "#FFFFFF",
         },
+        link: {
+          100: "#1DA1F2",
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
