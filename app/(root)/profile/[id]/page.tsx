@@ -68,7 +68,7 @@ const Profile = async ({ params }: RouteParams) => {
               <ProfileLink
                 imgUrl="/icons/calendar.svg"
                 href={portfolio}
-                title={dayjs(createdAt).format("MMMM YYYY")}
+                title={`Member Since ${dayjs(createdAt).format("MMMM YYYY")}`}
               />
             </div>
 
