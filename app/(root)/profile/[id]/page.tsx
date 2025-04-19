@@ -5,6 +5,7 @@ import {
   getUser,
   getUserAnswers,
   getUserQuestions,
+  getUserTopTags,
 } from "@/lib/actions/user.actions";
 import { notFound } from "next/navigation";
 import dayjs from "dayjs";
@@ -13,10 +14,11 @@ import { Button } from "@/components/ui/button";
 import Stats from "@/components/user/Stats";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import DataRenderer from "@/components/DataRenderer";
-import { EMPTY_ANSWERS, EMPTY_QUESTION } from "@/constants/states";
+import { EMPTY_ANSWERS, EMPTY_QUESTION, EMPTY_TAGS } from "@/constants/states";
 import QuestionCard from "@/components/cards/QuestionCard";
 import Pagination from "@/components/Pagination";
 import AnswerCard from "@/components/cards/AnswerCard";
+import TagCard from "@/components/cards/TagCards";
 
 const Profile = async ({ params, searchParams }: RouteParams) => {
   const { id } = await params;
@@ -61,9 +63,17 @@ const Profile = async ({ params, searchParams }: RouteParams) => {
     pageSize: Number(pageSize) || 10,
   });
 
-  const { questions, isNext: hasMoreQuestions } = userQuestions!;
+  const {
+    success: userTopTagsSuccess,
+    data: userTopTags,
+    error: userTopTagsError,
+  } = await getUserTopTags({
+    userId: id,
+  });
 
+  const { questions, isNext: hasMoreQuestions } = userQuestions!;
   const { answers, isNext: hasMoreAnswers } = userAnswers!;
+  const { tags } = userTopTags!;
 
   const { _id, name, image, portfolio, bio, location, createdAt, username } =
     user;
@@ -195,7 +205,26 @@ const Profile = async ({ params, searchParams }: RouteParams) => {
           <h3 className="h3-bold text-dark200_light900">Top TechStack</h3>
 
           <div className="mt-7 flex flex-col gap-4">
-            <p>List of Tags</p>
+            <DataRenderer
+              data={tags}
+              empty={EMPTY_TAGS}
+              success={userTopTagsSuccess}
+              error={userTopTagsError}
+              render={(tags) => (
+                <div className="flex w-full flex-col gap-6">
+                  {tags.map((tag) => (
+                    <TagCard
+                      key={tag._id}
+                      _id={tag._id}
+                      name={tag.name}
+                      questions={tag.count}
+                      showCount
+                      compact
+                    />
+                  ))}
+                </div>
+              )}
+            />
           </div>
         </div>
       </section>
