@@ -12,10 +12,35 @@ import { hasSavedQuestion } from "@/lib/actions/collection.actions";
 import { getQuestion, incrementViews } from "@/lib/actions/question.actions";
 import { hasVoted } from "@/lib/actions/vote.actions";
 import { formatNumber, getTimeStamp } from "@/lib/utils";
+import { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { after } from "next/server";
 import React, { Suspense } from "react";
+
+export async function generateMetadata({
+  params,
+}: RouteParams): Promise<Metadata> {
+  const { id } = await params;
+
+  const { success, data: question } = await getQuestion({ questionId: id });
+
+  if (!success || !question)
+    return {
+      title: "Dev Overflow | Question Not Found",
+      description: "The question you are looking for does not exist.",
+    };
+
+  return {
+    title: question.title,
+    description: question.content.slice(0, 100),
+    twitter: {
+      card: "summary_large_image",
+      title: question.title,
+      description: question.content.slice(0, 100),
+    },
+  };
+}
 
 const QuestionDetails = async ({ params, searchParams }: RouteParams) => {
   const { id } = await params;
