@@ -17,7 +17,7 @@ const QuestionCard = ({
 }: Props) => {
   return (
     <div className="card-wrapper rounded-[10px] p-9 sm:px-11">
-      <div className="flex flex-col-reverse items-center justify-between gap-5 sm:flex-row">
+      <div className="flex flex-row items-start justify-between gap-5">
         <div className="flex-1">
           <Link href={ROUTES.QUESTION(_id)}>
             <span className="subtle-regular text-dark400_light700 line-clamp-1 flex sm:hidden">
@@ -29,7 +29,11 @@ const QuestionCard = ({
           </Link>
         </div>
 
-        {showActionBtns && <EditDeleteAction type="Question" itemId={_id} />}
+        {showActionBtns && (
+          <div>
+            <EditDeleteAction type="Question" itemId={_id} />
+          </div>
+        )}
       </div>
 
       <div className="mt-3.5 flex w-full flex-wrap gap-2">
