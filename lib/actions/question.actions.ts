@@ -357,9 +357,7 @@ export async function deleteQuestion(
   session.startTransaction();
 
   try {
-    const question = await Question.findById({
-      questionId: questionId,
-    }).session(session);
+    const question = await Question.findById(questionId).session(session);
 
     if (!question) throw new Error("Question not found.");
 
