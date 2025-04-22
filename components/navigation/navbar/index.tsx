@@ -23,7 +23,7 @@ const Navbar = async () => {
           Dev<span className="text-primary-500">Overflow</span>
         </p>
       </Link>
-      <p>Global Search</p>
+      {/* <p>Global Search</p> */}
       <div className="flex-between gap-5">
         <Theme />
         {session?.user?.id && (

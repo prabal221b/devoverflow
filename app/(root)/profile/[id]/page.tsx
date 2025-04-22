@@ -80,7 +80,7 @@ const Profile = async ({ params, searchParams }: RouteParams) => {
 
   return (
     <>
-      <section className="flex flex-col-reverse items-start justify-between sm:flex-row">
+      <section className="flex items-start justify-between xs:flex-row">
         <div className="flex flex-col items-start gap-4 lg:flex-row">
           <UserAvatar
             id={_id}
@@ -124,7 +124,7 @@ const Profile = async ({ params, searchParams }: RouteParams) => {
           </div>
         </div>
 
-        <div className="flex justify-end max-sm:mb-6 max-sm:w-full sm:mt-3">
+        <div className="flex justify-end max-sm:mb-6 sm:mt-3">
           {loggedInUser?.user?.id === _id && (
             <Link href="/profile/edit">
               <Button className="paragpraph-medium btn-secondary text-dark300_light900 min-h-12 min-w-44 px-4 py-3">
