@@ -1,11 +1,15 @@
 "use server";
 
 import Answer, { IAnswerDoc } from "@/database/answer.model";
-import { AnswerServerSchema, GetAnswersSchema } from "../validations";
+import {
+  AnswerServerSchema,
+  DeleteAnswerSchema,
+  GetAnswersSchema,
+} from "../validations";
 import action from "../handlers/action";
 import handleError from "../handlers/error";
 import mongoose from "mongoose";
-import { Question } from "@/database";
+import { Question, Vote } from "@/database";
 import { revalidatePath } from "next/cache";
 import ROUTES from "@/constants/routes";
 
@@ -122,5 +126,60 @@ export async function getAnswers(
     };
   } catch (error) {
     return handleError(error) as ErrorResponse;
+  }
+}
+
+export async function deleteAnswer(
+  params: DeleteAnswerParams
+): Promise<ActionResponse> {
+  const validatedResult = await action({
+    params,
+    schema: DeleteAnswerSchema,
+    authorize: true,
+  });
+
+  if (validatedResult instanceof Error) {
+    return handleError(validatedResult) as ErrorResponse;
+  }
+
+  const { answerId } = validatedResult.params!;
+  const userId = validatedResult?.session?.user?.id;
+
+  const session = await mongoose.startSession();
+  session.startTransaction();
+
+  try {
+    const answer = await Answer.findById(answerId).session(session);
+
+    if (!answer) throw new Error("Question not found.");
+
+    if (answer.author.toString() !== userId) {
+      throw new Error("Unauthorized");
+    }
+
+    await Vote.deleteMany({
+      actionId: answerId,
+      actionType: "answer",
+    }).session(session);
+
+    await Question.findByIdAndUpdate(
+      answer.question,
+      { $inc: { answers: -1 } },
+      { session }
+    );
+
+    await Answer.findByIdAndDelete(answerId).session(session);
+
+    await session.commitTransaction();
+    session.endSession();
+
+    revalidatePath(`/profile/${userId}`);
+
+    return { success: true };
+  } catch (error) {
+    await session.abortTransaction();
+    return handleError(error) as ErrorResponse;
+  } finally {
+    session.endSession();
   }
 }

@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import ROUTES from "@/constants/routes";
 import { toast } from "@/hooks/use-toast";
+import { deleteAnswer } from "@/lib/actions/answer.actions";
 import { deleteQuestion } from "@/lib/actions/question.actions";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -33,6 +34,7 @@ const EditDeleteAction = ({ type, itemId }: Props) => {
     if (type === "Question") {
       await deleteQuestion({ questionId: itemId });
     } else if (type === "Answer") {
+      await deleteAnswer({ answerId: itemId });
     }
 
     if (type === "Question") {
