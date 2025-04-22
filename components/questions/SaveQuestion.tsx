@@ -28,7 +28,6 @@ const SaveQuestion = ({
       return toast({
         title: "Please login to save this question",
         description: "You need to be logged in to save this question.",
-        variant: "destructive",
       });
     }
 
