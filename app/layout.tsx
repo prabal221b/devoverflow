@@ -21,11 +21,66 @@ const spaceGrotesk = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Dev Overflow",
+  title: "DevOverflow",
   description:
     "A community-driven platform for asking and answering programming questions. Get help, share knowledge, and collaborate with developers from around the world. Explore topics in web development, mobile app development, algorithms, data structures, and more.",
+  generator: "Next.js",
+  applicationName: "Dev Overflow",
+  referrer: "origin-when-cross-origin",
+
+  keywords: [
+    "Dev Overflow",
+    "programming questions",
+    "developer Q&A",
+    "web development",
+    "JavaScript",
+    "React",
+    "Node.js",
+    "algorithms",
+    "data structures",
+    "developer community",
+  ],
+
+  authors: [
+    {
+      name: "Prabal Bhadauria",
+      url: "https://www.linkedin.com/in/prabal-bhadauria/",
+    },
+  ],
+  creator: "Prabal",
+  publisher: "DevOverflow",
+
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
   icons: {
     icon: "/images/site-logo.svg",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+    other: [
+      {
+        rel: "mask-icon",
+        url: "/safari-pinned-tab.svg",
+        color: "#5bbad5",
+      },
+    ],
   },
 };
 
