@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import ROUTES from "@/constants/routes";
 import { toast } from "@/hooks/use-toast";
+import { deleteQuestion } from "@/lib/actions/question.actions";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -29,16 +30,21 @@ const EditDeleteAction = ({ type, itemId }: Props) => {
   };
 
   const handleDelete = async () => {
-    // Call the delete API here
+    if (type === "Question") {
+      await deleteQuestion({ questionId: itemId });
+    } else if (type === "Answer") {
+    }
 
     if (type === "Question") {
       toast({
         title: "Question Deleted",
+        variant: "destructive",
         description: "Your question has been deleted successfully",
       });
     } else if (type === "Answer") {
       toast({
         title: "Answer Deleted",
+        variant: "destructive",
         description: "Your answer has been deleted successfully",
       });
     }
