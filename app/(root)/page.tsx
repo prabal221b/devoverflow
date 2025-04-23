@@ -24,8 +24,10 @@ export const metadata: Metadata = {
 };
 
 export default async function Home({ searchParams }: SearchParams) {
-  const loggedInUser = await auth();
-  const { page, pageSize, query, filter } = await searchParams;
+  const [loggedInUser, { page, pageSize, query, filter }] = await Promise.all([
+    auth(),
+    searchParams,
+  ]);
 
   const { success, data, error } = await getQuestions({
     page: Number(page) || 1,
