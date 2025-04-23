@@ -11,6 +11,7 @@ import CommonFilter from "@/components/filters/CommonFilter";
 import { HomePageFilters } from "@/constants/filters";
 import Pagination from "@/components/Pagination";
 import { Metadata } from "next";
+import { auth } from "@/auth";
 
 interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home({ searchParams }: SearchParams) {
+  const loggedInUser = await auth();
   const { page, pageSize, query, filter } = await searchParams;
 
   const { success, data, error } = await getQuestions({
@@ -70,7 +72,11 @@ export default async function Home({ searchParams }: SearchParams) {
         render={(questions) => (
           <div className="mt-10 flex w-full flex-col gap-6">
             {questions.map((question) => (
-              <QuestionCard key={question._id} question={question} />
+              <QuestionCard
+                key={question._id}
+                question={question}
+                showActionBtns={loggedInUser?.user?.id === question.author._id}
+              />
             ))}
           </div>
         )}
