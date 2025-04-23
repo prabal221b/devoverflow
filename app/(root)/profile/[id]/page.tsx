@@ -194,7 +194,7 @@ const Profile = async ({ params, searchParams }: RouteParams) => {
                     <AnswerCard
                       key={answer._id}
                       {...answer}
-                      content={answer.content.slice(0, 27)}
+                      content={answer.content.slice(0, 270)}
                       containerClasses="card-wrapper rounded-[10px] px-7 py-9 sm:px-11"
                       showReadMore
                       showActionBtns={
