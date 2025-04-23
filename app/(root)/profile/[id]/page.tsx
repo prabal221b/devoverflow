@@ -92,7 +92,7 @@ const Profile = async ({ params, searchParams }: RouteParams) => {
 
           <div className="mt-3">
             <h2 className="h2-bold text-dark100_light900">{name}</h2>
-            <p className="paragraph-regular text-dark200_light800">
+            <p className="paragraph-regular text-dark400_light800">
               @{username}
             </p>
 

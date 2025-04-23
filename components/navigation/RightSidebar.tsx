@@ -34,7 +34,7 @@ const RightSidebar = async () => {
                   href={ROUTES.QUESTION(_id)}
                   className="flex cursor-pointer justify-between gap-7"
                 >
-                  <p className="body-medium text-dark500_light700 line-clamp-1">
+                  <p className="body-medium text-dark500_light700 line-clamp-2">
                     {title}
                   </p>
 
