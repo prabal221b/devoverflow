@@ -195,4 +195,232 @@ export const techMap: { [key: string]: string } = {
 
   // Three.js
   threejs: "devicon-threejs-original",
+
+  // Spring Framework
+  spring: "devicon-spring-plain",
+
+  // Spring Boot
+  springboot: "devicon-spring-plain",
+
+  // Hibernate
+  hibernate: "devicon-hibernate-plain",
+
+  // Express.js
+  express: "devicon-express-original",
+
+  // Symfony
+  symfony: "devicon-symfony-original",
+
+  // CodeIgniter
+  codeigniter: "devicon-codeigniter-plain",
+
+  // Meteor.js
+  meteor: "devicon-meteor-plain",
+
+  // Svelte
+  svelte: "devicon-svelte-plain",
+
+  // Ember.js
+  ember: "devicon-ember-original",
+
+  // Backbone.js
+  backbone: "devicon-backbonejs-plain",
+
+  // Electron
+  electron: "devicon-electron-original",
+
+  // TensorFlow
+  tensorflow: "devicon-tensorflow-original",
+
+  // PyTorch
+  pytorch: "devicon-pytorch-original",
+
+  // FastAPI
+  fastapi: "devicon-fastapi-plain",
+
+  // NestJS
+  nestjs: "devicon-nestjs-plain",
+
+  // Strapi
+  strapi: "devicon-strapi-plain",
+
+  // Gatsby
+  gatsby: "devicon-gatsby-plain",
+
+  // Nuxt.js
+  nuxtjs: "devicon-nuxtjs-plain",
+
+  // Bulma
+  bulma: "devicon-bulma-plain",
+
+  // Foundation
+  foundation: "devicon-foundation-plain",
+
+  // Ant Design
+  antd: "devicon-antdesign-plain",
+
+  // Chakra UI
+  chakraui: "devicon-chakraui-plain",
+
+  // Vuetify
+  vuetify: "devicon-vuetify-plain",
+
+  // Webpack
+  webpack: "devicon-webpack-plain",
+
+  // Babel
+  babel: "devicon-babel-plain",
+
+  // Rollup.js
+  rollup: "devicon-rollupjs-plain",
+
+  // Parcel
+  parcel: "devicon-parcel-plain",
+
+  // Vite
+  vite: "devicon-vite-plain",
+
+  // ESLint
+  eslint: "devicon-eslint-plain",
+
+  // Prettier
+  prettier: "devicon-prettier-plain",
+
+  // Jest
+  jest: "devicon-jest-plain",
+
+  // Mocha
+  mocha: "devicon-mocha-plain",
+
+  // Cypress
+  cypress: "devicon-cypress-plain",
+
+  // Puppeteer
+  puppeteer: "devicon-puppeteer-plain",
+
+  // Selenium
+  selenium: "devicon-selenium-plain",
+
+  // Apache
+  apache: "devicon-apache-plain",
+
+  // Tomcat
+  tomcat: "devicon-tomcat-plain",
+
+  // RabbitMQ
+  rabbitmq: "devicon-rabbitmq-plain",
+
+  // Kafka
+  kafka: "devicon-kafka-plain",
+
+  // Logstash
+  logstash: "devicon-logstash-plain",
+
+  // Kibana
+  kibana: "devicon-kibana-plain",
+
+  // Prometheus
+  prometheus: "devicon-prometheus-plain",
+
+  // Grafana
+  grafana: "devicon-grafana-plain",
+
+  // Terraform
+  terraform: "devicon-terraform-plain",
+
+  // Ansible
+  ansible: "devicon-ansible-plain",
+
+  // Chef
+  chef: "devicon-chef-plain",
+
+  // Puppet
+  puppet: "devicon-puppet-plain",
+
+  // SaltStack
+  saltstack: "devicon-saltstack-plain",
+
+  // OpenShift
+  openshift: "devicon-openshift-plain",
+
+  // Istio
+  istio: "devicon-istio-plain",
+
+  // Consul
+  consul: "devicon-consul-plain",
+
+  // Vault
+  vault: "devicon-vault-plain",
+
+  // Zookeeper
+  zookeeper: "devicon-zookeeper-plain",
+
+  // Hadoop
+  hadoop: "devicon-hadoop-plain",
+
+  // Spark
+  spark: "devicon-spark-plain",
+
+  // Airflow
+  airflow: "devicon-airflow-plain",
+
+  // Tableau
+  tableau: "devicon-tableau-plain",
+
+  // Power BI
+  powerbi: "devicon-powerbi-plain",
+
+  // Snowflake
+  snowflake: "devicon-snowflake-plain",
+
+  // Databricks
+  databricks: "devicon-databricks-plain",
+
+  // Looker
+  looker: "devicon-looker-plain",
+
+  // Qlik
+  qlik: "devicon-qlik-plain",
+
+  // Splunk
+  splunk: "devicon-splunk-plain",
+
+  // New Relic
+  newrelic: "devicon-newrelic-plain",
+
+  // Dynatrace
+  dynatrace: "devicon-dynatrace-plain",
+
+  // AppDynamics
+  appdynamics: "devicon-appdynamics-plain",
+
+  // Datadog
+  datadog: "devicon-datadog-plain",
+
+  // Sentry
+  sentry: "devicon-sentry-plain",
+
+  // PagerDuty
+  pagerduty: "devicon-pagerduty-plain",
+
+  // Opsgenie
+  opsgenie: "devicon-opsgenie-plain",
+
+  // Slack
+  slack: "devicon-slack-plain",
+
+  // Microsoft Teams
+  teams: "devicon-teams-plain",
+
+  // Zoom
+  zoom: "devicon-zoom-plain",
+
+  // Webex
+  webex: "devicon-webex-plain",
+
+  // Skype
+  skype: "devicon-skype-plain",
+
+  // Discord
+  discord: "devicon-discord-plain",
 };

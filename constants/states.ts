@@ -32,26 +32,22 @@ export const EMPTY_QUESTION = {
 export const EMPTY_TAGS = {
   title: "No Tags Found",
   message: "The tag cloud is empty. Add some keywords to make it rain.",
-  button: {
-    text: "Create Tag",
-    href: ROUTES.TAGS,
-  },
 };
 
 export const EMPTY_ANSWERS = {
   title: "No Answers Found",
   message:
     "The answer board is empty. Make it rain with your brilliant answers.",
+  button: {
+    text: "Answer some questions",
+    href: ROUTES.HOME,
+  },
 };
 
 export const EMPTY_COLLECTIONS = {
   title: "Collections Are Empty",
   message:
     "Looks like you haven’t created any collections yet. Start curating something extraordinary today",
-  button: {
-    text: "Save to Collection",
-    href: ROUTES.COLLECTION,
-  },
 };
 
 export const EMPTY_USERS = {

@@ -366,9 +366,9 @@ export async function deleteQuestion(
       throw new Error("Unauthorized");
     }
 
-    await Collection.deleteMany({ questionId: questionId }).session(session);
+    await Collection.deleteMany({ question: questionId }).session(session);
 
-    await TagQuestion.deleteMany({ questionId: questionId }).session(session);
+    await TagQuestion.deleteMany({ question: questionId }).session(session);
 
     if (question.tags.length > 0) {
       await Tag.updateMany(
