@@ -59,7 +59,7 @@ const QuestionCard = ({
             imgUrl="/icons/like.svg"
             alt="like"
             value={upvotes}
-            title="Votes"
+            title={upvotes > 1 ? "Votes" : "Vote"}
             textStyles="small-medium text-dark400_light700"
           />
 
@@ -67,7 +67,7 @@ const QuestionCard = ({
             imgUrl="/icons/message.svg"
             alt="answers"
             value={answers}
-            title="Answers"
+            title={answers > 1 ? "Answers" : "Answer"}
             textStyles="small-medium text-dark400_light700"
           />
 

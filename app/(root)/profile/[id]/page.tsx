@@ -210,8 +210,8 @@ const Profile = async ({ params, searchParams }: RouteParams) => {
           </TabsContent>
         </Tabs>
 
-        <div className="flex w-full min-w-[250px] flex-1 flex-col max-lg:hidden">
-          <h3 className="h3-bold text-dark200_light900">Top TechStack</h3>
+        <div className="flex w-full min-w-[250px] flex-1 flex-col mt-16 max-lg:hidden">
+          <h3 className="h3-bold text-dark200_light900">Top Tags</h3>
 
           <div className="mt-7 flex flex-col gap-4">
             <DataRenderer
