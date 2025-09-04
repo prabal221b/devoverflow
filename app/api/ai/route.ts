@@ -51,6 +51,6 @@ Return ONLY a valid JSON object in the following exact format (no markdown, no e
 
     return Response.json({ success: true, data: text }, { status: 200 });
   } catch (error) {
-    
+    console.log(error);
   }
 }
