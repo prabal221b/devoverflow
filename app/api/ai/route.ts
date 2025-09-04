@@ -7,7 +7,7 @@ export async function POST(req: Request) {
 
   try {
     const { text } = await generateText({
-      model: openai("gpt-4o-mini"),
+      model: openai("gpt-3.5-turbo"),
       prompt: `Generate a detailed, ${difficulty}-level study roadmap for learning "${courseTitle}" over a total of ${totalHrs} hours, assuming the learner studies ${dailyHrs} hours per day.
 
 🟡 Output format:
