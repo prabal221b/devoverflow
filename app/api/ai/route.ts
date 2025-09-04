@@ -1,6 +1,20 @@
 import { openai } from "@ai-sdk/openai";
 import { generateText } from "ai";
 
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export async function OPTIONS(req: NextRequest) {
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Origin': '*', // or restrict to your frontend domain
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    },
+  });
+}
+
 
 export async function POST(req: Request) {
   const { courseTitle, difficulty, totalHrs, dailyHrs } = await req.json();
@@ -49,8 +63,31 @@ Return ONLY a valid JSON object in the following exact format (no markdown, no e
         "You are a helpful study assistant, speciliazing in created well formed roadmaps for learning technologies and you known to have the best possible resources for learning. Use the given syntax for generating the roadmap.",
     });
 
-    return Response.json({ success: true, data: text }, { status: 200 });
+    return new NextResponse(
+      JSON.stringify({ success: true, data: text }),
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*', // or your frontend domain
+          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
+      }
+    );
   } catch (error) {
-    console.log(error);
+    console.error("Error generating text:", error);
+    return new NextResponse(
+      JSON.stringify({ success: false, error: 'Internal Server Error' }),
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
+      }
+    );
   }
 }
