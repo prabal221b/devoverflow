@@ -2,13 +2,12 @@ import { openai } from "@ai-sdk/openai";
 import { generateText } from "ai";
 
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
 
-export async function OPTIONS(req: NextRequest) {
+export async function OPTIONS() {
   return new NextResponse(null, {
     status: 204,
     headers: {
-      'Access-Control-Allow-Origin': '*', // or restrict to your frontend domain
+      'Access-Control-Allow-Origin': '*', 
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     },
