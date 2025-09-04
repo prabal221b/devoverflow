@@ -52,6 +52,7 @@ Return ONLY a valid JSON object in the following exact format (no markdown, no e
 •⁠  ⁠The "roadmap" array should contain one entry per day. Calculate number of days as: total_days = Math.ceil(totalHrs / dailyHrs).
 •⁠  ⁠Each day's content should cover a unique topic relevant to ${courseTitle}, progressing from basic to advanced (according to the selected difficulty).
 •⁠  ⁠Each day must include a valid and relevant *video* and *article* link (prefer YouTube, MDN, freeCodeCamp, W3Schools, official docs, etc).
+•⁠  Double check the video and the article links to make sure they are working properly, and the content hasn't been deleted or made private.
 •⁠  ⁠Ensure the content matches the selected difficulty level (${difficulty}).
 •⁠  ⁠Do not repeat topics.
 •⁠  ⁠Keep descriptions short, clear, and instructional.
